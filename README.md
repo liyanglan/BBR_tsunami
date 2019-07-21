@@ -15,7 +15,7 @@ Debian/Ubuntu TCP BBR 改进版/增强版/魔改版
 
 ### 1、安装原版BBR：
 ```
-wget --no-check-certificate -qO 'BBR.sh' 'https://raw.githubusercontent.com/liyanglan/Debian-Ubuntu-TCP-BBR/master/BBR.sh' && chmod a+x BBR.sh && bash BBR.sh -f
+wget --no-check-certificate -qO 'BBR.sh' 'https://raw.githubusercontent.com/liyanglan/BBR_tsunami/master/BBR.sh' && chmod a+x BBR.sh && bash BBR.sh -f
 ```
 
 注意:执行此命令会自动重启.
