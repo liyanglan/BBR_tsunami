@@ -22,12 +22,12 @@ wget --no-check-certificate -qO 'BBR.sh' 'https://raw.githubusercontent.com/liya
 
 ### 2、安装魔改BBR:
 ```
-wget --no-check-certificate -qO 'BBR_POWERED.sh' 'https://raw.githubusercontent.com/liyanglan/Debian-Ubuntu-TCP-BBR/master/BBR_POWERED.sh' && chmod a+x BBR_POWERED.sh && bash BBR_POWERED.sh
+wget --no-check-certificate -qO 'BBR_tsunami.sh' 'https://raw.githubusercontent.com/liyanglan/BBR_tsunami/master/BBR_tsunami.sh' && chmod a+x BBR_tsunami.sh && bash BBR_tsunami.sh
 ```
 
 指定内核版本(以v4.11.9内核版本为例):
 ```
-wget --no-check-certificate -qO 'BBR_POWERED.sh' 'https://raw.githubusercontent.com/liyanglan/Debian-Ubuntu-TCP-BBR/master/BBR_POWERED.sh' && chmod a+x BBR_POWERED.sh && bash BBR_POWERED.sh -f v4.11.9
+wget --no-check-certificate -qO 'BBR_tsunami.sh' 'https://raw.githubusercontent.com/liyanglan/BBR_tsunami/master/BBR_tsunami.sh' && chmod a+x BBR_tsunami.sh && bash BBR_tsunami.sh -f v4.11.9
 ```
 
 
@@ -41,14 +41,14 @@ wget --no-check-certificate -qO 'BBR_POWERED.sh' 'https://raw.githubusercontent.
 
 模块默认为开机自动加载.
 
-模块名称:tcp_bbr_powered
+模块名称:tcp_bbr_tsunami
 
-可用 modprobe tcp_bbr_powered 命令进行加载模块.
+可用 modprobe tcp_bbr_tsunami 命令进行加载模块.
 
-可执行``` lsmod |grep 'bbr_powered' ```
+可执行``` lsmod |grep 'bbr_tsunami' ```
 
 结果不为空,则加载模块成功
 
-可执行``` sysctl -w net.ipv4.tcp_congestion_control=bbr_powered ```使用此模块.
+可执行``` sysctl -w net.ipv4.tcp_congestion_control=bbr_tsunami ```使用此模块.
 
 以上只是说明,直接使用一键脚本即可.
