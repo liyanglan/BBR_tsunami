@@ -94,7 +94,7 @@ modprobe tcp_bbr_tsunami
 sed -i '/net.core.default_qdisc.*/d' /etc/sysctl.conf
 sed -i '/net.ipv4.tcp_congestion_control.*/d' /etc/sysctl.conf
 echo "net.core.default_qdisc = fq" >>/etc/sysctl.conf
-echo "net.ipv4.tcp_congestion_control = bbr_powered" >>/etc/sysctl.conf
+echo "net.ipv4.tcp_congestion_control = bbr_tsunami" >>/etc/sysctl.conf
 }
 lsmod |grep -q 'bbr_tsunami'
 [ $? -eq '0' ] && {
