@@ -77,31 +77,31 @@ echo -ne "Download Kernel Headers\n\t$HeadersFile\n"
 wget -qO "$HeadersFile" "$ReleaseURL/$HeadersFile"
 echo -ne "Install Kernel Headers\n\t$HeadersFile\n"
 dpkg -i "$HeadersFile" >/dev/null 2>&1
-echo -ne "Download BBR POWERED Source code\n"
+echo -ne "Download BBR tsunami Source code\n"
 [ -e ./tmp ] && rm -rf ./tmp
 mkdir -p ./tmp && cd ./tmp
 [ $? -eq '0' ] && {
-wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/liyanglan/Debian-Ubuntu-TCP-BBR/master/tcp_bbr_powered.c.deb' >./tcp_bbr_powered.c
-echo 'obj-m:=tcp_bbr_powered.o' >./Makefile
+wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/liyanglan/BBR_tsunami/master/tcp_tsunami.c.deb' >./tcp_bbr_tsunami.c
+echo 'obj-m:=tcp_bbr_tsunami.o' >./Makefile
 make -s -C /lib/modules/$(uname -r)/build M=`pwd` modules CC=`which gcc`
-echo "Loading TCP BBR POWERED..."
-[ -f ./tcp_bbr_powered.ko ] && [ -f /lib/modules/$(uname -r)/modules.dep ] && {
-cp -rf ./tcp_bbr_powered.ko /lib/modules/$(uname -r)/kernel/net/ipv4
+echo "Loading TCP BBR tsunami..."
+[ -f ./tcp_bbr_tsunami.ko ] && [ -f /lib/modules/$(uname -r)/modules.dep ] && {
+cp -rf ./tcp_bbr_tsunami.ko /lib/modules/$(uname -r)/kernel/net/ipv4
 depmod -a >/dev/null 2>&1
 }
-modprobe tcp_bbr_powered
+modprobe tcp_bbr_tsunami
 [ ! -f /etc/sysctl.conf ] && touch /etc/sysctl.conf
 sed -i '/net.core.default_qdisc.*/d' /etc/sysctl.conf
 sed -i '/net.ipv4.tcp_congestion_control.*/d' /etc/sysctl.conf
 echo "net.core.default_qdisc = fq" >>/etc/sysctl.conf
 echo "net.ipv4.tcp_congestion_control = bbr_powered" >>/etc/sysctl.conf
 }
-lsmod |grep -q 'bbr_powered'
+lsmod |grep -q 'bbr_tsunami'
 [ $? -eq '0' ] && {
 sysctl -p >/dev/null 2>&1
 echo "Finish! "
 exit 0
 } || {
-echo "Error, Loading BBR POWERED."
+echo "Error, Loading BBR tsunami."
 exit 1
 }
